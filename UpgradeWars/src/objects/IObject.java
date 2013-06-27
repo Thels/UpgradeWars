@@ -36,4 +36,10 @@ public interface IObject
 	 * Tick the object. Game loop will call this.
 	 */
 	public void tickObject();
+	
+	/**
+	 * Get the angle the object is facing, this means angle of facing for towers and angle of movement for mobs/bullets.
+	 * @return Double value representing the angle of the object.
+	 */
+	public double getAngle();
 }

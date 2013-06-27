@@ -3,27 +3,25 @@ package objects;
 import java.awt.Point;
 import java.awt.geom.Point2D.Double;
 
-/**
- * Abstract class housing all objects common behavior and their constructors.
- * @author Ross.
- */
 public abstract class AbstractObject implements IObject
 {
-	public Point.Double location;
-	public int health;
+	private int health;
+	private Point.Double objectLocation;
+	private double objectAngle;
 	
-	/**
-	 * Abstract object constructor, basics such as the objects location etc.
-	 * @param xLoc x Location of the object.
-	 * @param yLoc y Location of the object.
-	 * @param maxHP Maximum HP of the object.
-	 */
-	public AbstractObject(double xLoc, double yLoc, int maxHP)
+	
+	public AbstractObject(double xLoc, double yLoc , double angle, int maxHP)
 	{
-		this.location = new Point.Double(xLoc,yLoc);
+		this.objectLocation = new Point.Double(xLoc,yLoc);
 		this.health = maxHP;
+		this.objectAngle = angle;
 	}
-
+	
+	public AbstractObject(double xLoc, double yLoc)
+	{
+		this(xLoc,yLoc,0,0);
+	}
+	
 	@Override
 	public int getHealth() 
 	{
@@ -33,21 +31,30 @@ public abstract class AbstractObject implements IObject
 	@Override
 	public boolean isObjectAlive() 
 	{
-		return (this.health > 0);
+		return this.health > 0;
 	}
 
 	@Override
 	public void changeObjectHealth(int amount) 
 	{
-		this.health += amount;
+		this.health += amount;	
 	}
 
 	@Override
-	public Point.Double getObjectLocation() 
+	public Double getObjectLocation() 
 	{
-		return this.location;
+		return objectLocation;
+	}
+	
+	@Override
+	public double getAngle() 
+	{
+		return objectAngle;
 	}
 
 	@Override
 	public abstract void tickObject();
+
+	
+
 }
